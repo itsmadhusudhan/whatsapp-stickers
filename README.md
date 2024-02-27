@@ -8,9 +8,9 @@ Application to add stickers pack to WhatsApp.
 - It is necessary to follow the WhatsApp documentation to create stcikers based on requirements from WhatsApp.
 
 ## Roadmap
-[x] Add stickers to WhatsApp
-[] Download stickers from the remote source
-[] Sticker pack detail view
+- [x] Add stickers to WhatsApp
+- [ ] Download stickers from the remote source
+- [ ] Sticker pack detail view
 
 
 ## References
