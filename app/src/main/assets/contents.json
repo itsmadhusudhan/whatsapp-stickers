@@ -5,14 +5,14 @@
     {
       "identifier": "1",
       "name": "Cuppy",
-      "publisher": "Jane Doe",
+      "publisher": "Madhusudhan",
       "tray_image_file": "tray_Cuppy.png",
       "image_data_version": "1",
       "avoid_cache": false,
-      "publisher_email": "",
-      "publisher_website": "",
-      "privacy_policy_website": "",
-      "license_agreement_website": "",
+      "publisher_email": "madhusudhan@devwhispers.com",
+      "publisher_website": "https://devwhispers.com",
+      "privacy_policy_website": "https://devwhispers.com/policy",
+      "license_agreement_website": "https://devwhispers.com/license",
       "stickers": [
         {
           "image_file": "01_Cuppy_smile.webp",
@@ -198,10 +198,10 @@
       "tray_image_file": "01.png",
       "image_data_version": "1",
       "avoid_cache": false,
-      "publisher_email": "",
-      "publisher_website": "",
-      "privacy_policy_website": "",
-      "license_agreement_website": "",
+      "publisher_email": "madhusudhan@devwhispers.com",
+      "publisher_website": "https://devwhispers.com",
+      "privacy_policy_website": "https://devwhispers.com/policy",
+      "license_agreement_website": "https://devwhispers.com/license",
       "animated_sticker_pack": true,
       "stickers": [
         {

@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.devwhispers.whatsapp_stickers.features.stickers.StickersList
 import com.devwhispers.whatsapp_stickers.ui.theme.WhatsappstickersTheme
 
 
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 200) {
@@ -73,110 +75,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-const val EXTRA_STICKER_PACK_ID = "sticker_pack_id"
-const val EXTRA_STICKER_PACK_AUTHORITY = "sticker_pack_authority"
-const val EXTRA_STICKER_PACK_NAME = "sticker_pack_name"
-
-@Composable
-fun StickersList(launcher: (Intent) -> Unit ) {
-    val context = LocalContext.current
-
-    val stickerPacks = remember { mutableStateListOf<StickerPack>() }
-
-    fun createIntentToAddStickerPack(identifier: String, stickerPackName: String): Intent {
-        val intent = Intent()
-        intent.setAction("com.whatsapp.intent.action.ENABLE_STICKER_PACK")
-        intent.putExtra(EXTRA_STICKER_PACK_ID, identifier)
-        intent.putExtra(EXTRA_STICKER_PACK_AUTHORITY, BuildConfig.CONTENT_PROVIDER_AUTHORITY)
-        intent.putExtra(EXTRA_STICKER_PACK_NAME, stickerPackName)
-        return intent
-    }
-
-    fun launchIntentToAddPackToSpecificPackage(
-        identifier: String,
-        stickerPackName: String,
-        whatsappPackageName: String
-    ) {
-        println("intent was called!! with $identifier and $stickerPackName for $whatsappPackageName")
-
-        try {
-            val intent = createIntentToAddStickerPack(identifier, stickerPackName)
-            intent.setPackage(whatsappPackageName)
-
-            context.startActivity(intent)
-
-//            launcher(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                context,
-                R.string.add_pack_fail_prompt_update_whatsapp,
-                Toast.LENGTH_LONG
-            )
-                .show()
-        }
-    }
-
-    fun addStickerPackToWhatsApp(identifier: String, stickerPackName: String) {
-        try {
-            //if neither WhatsApp Consumer or WhatsApp Business is installed, then tell user to install the apps.
-            if (!WhitelistCheck.isWhatsAppConsumerAppInstalled(context.packageManager) && !WhitelistCheck.isWhatsAppSmbAppInstalled(
-                    context.packageManager
-                )
-            ) {
-                Toast.makeText(
-                    context,
-                    R.string.add_pack_fail_prompt_update_whatsapp,
-                    Toast.LENGTH_LONG
-                ).show()
-                return
-            }
-
-            println("Sticker Pack Identifier: $identifier")
-
-            val stickerPackWhitelistedInWhatsAppConsumer =
-                WhitelistCheck.isStickerPackWhitelistedInWhatsAppConsumer(context, identifier)
-            val stickerPackWhitelistedInWhatsAppSmb =
-                WhitelistCheck.isStickerPackWhitelistedInWhatsAppSmb(context, identifier)
-
-
-            println("stickerPackWhitelistedInWhatsAppConsumer: $stickerPackWhitelistedInWhatsAppConsumer")
-            println("stickerPackWhitelistedInWhatsAppSmb: $stickerPackWhitelistedInWhatsAppSmb")
-
-            if (!stickerPackWhitelistedInWhatsAppConsumer) {
-                //ask users which app to add the pack to.
-                launchIntentToAddPackToSpecificPackage(
-                    identifier,
-                    stickerPackName,
-                    WhitelistCheck.CONSUMER_WHATSAPP_PACKAGE_NAME
-                )
-            }
-        } catch (e: Exception) {
-            Toast.makeText(
-                context,
-                R.string.add_pack_fail_prompt_update_whatsapp,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
-    }
-
-    LaunchedEffect(Unit) {
-        val _stickerPacks = StickerPackLoader.fetchStickerPacks(context)
-
-        stickerPacks.addAll(_stickerPacks)
-    }
-
-
-    Column {
-        Text(text = "Stickers List")
-
-        Button(onClick = {
-            val pack = stickerPacks[0]
-            addStickerPackToWhatsApp(pack.identifier!!, pack.name!!)
-        }) {
-            Text(text = "Add Stickers to WhatsApp")
-        }
-    }
-}
-

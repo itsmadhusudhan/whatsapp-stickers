@@ -1,9 +1,10 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.data
 
 import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
+import com.devwhispers.whatsapp_stickers.BuildConfig
 
 /*
  * Copyright (c) WhatsApp Inc. and its affiliates.
@@ -56,7 +57,6 @@ internal object WhitelistCheck {
                 )
                     ?: return false
 
-            println(providerInfo)
             // provider is not there. The WhatsApp app may be an old version.
             val queryUri = Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT)
                 .authority(whatsappProviderAuthority).appendPath(
@@ -65,7 +65,6 @@ internal object WhitelistCheck {
                 .appendQueryParameter(
                     IDENTIFIER_QUERY_PARAM, identifier
                 ).build()
-            println(queryUri)
             context.contentResolver.query(queryUri, null, null, null, null).use { cursor ->
                 if (cursor != null && cursor.moveToFirst()) {
                     val whiteListResult =

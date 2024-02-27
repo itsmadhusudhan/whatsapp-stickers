@@ -1,4 +1,4 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.data
 
 /*
  * Copyright (c) WhatsApp Inc. and its affiliates.
@@ -14,6 +14,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.webkit.URLUtil
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.Sticker
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.StickerPack
 import com.facebook.animated.webp.WebPImage
 import com.facebook.imagepipeline.common.ImageDecodeOptions
 import java.io.IOException

@@ -1,4 +1,4 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
  * LICENSE file in the root directory of this source tree.
  */
 @Parcelize
-internal class Sticker(
+class Sticker(
     val imageFileName: String?,
     val emojis: List<String>?,
     var size: Long = 0

@@ -1,4 +1,4 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.data
 
 /*
  * Copyright (c) WhatsApp Inc. and its affiliates.
@@ -13,6 +13,8 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.text.TextUtils
+import com.devwhispers.whatsapp_stickers.BuildConfig
+import com.devwhispers.whatsapp_stickers.StickerContentProvider
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.ANDROID_APP_DOWNLOAD_LINK_IN_QUERY
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.ANIMATED_STICKER_PACK
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.AVOID_CACHE
@@ -28,7 +30,9 @@ import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.STICKE
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.STICKER_PACK_IDENTIFIER_IN_QUERY
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.STICKER_PACK_NAME_IN_QUERY
 import com.devwhispers.whatsapp_stickers.StickerContentProvider.Companion.STICKER_PACK_PUBLISHER_IN_QUERY
-import com.devwhispers.whatsapp_stickers.StickerPackValidator.verifyStickerPackValidity
+import com.devwhispers.whatsapp_stickers.features.stickers.data.StickerPackValidator.verifyStickerPackValidity
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.Sticker
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.StickerPack
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 

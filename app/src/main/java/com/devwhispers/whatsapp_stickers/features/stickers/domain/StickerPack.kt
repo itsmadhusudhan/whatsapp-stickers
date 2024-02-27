@@ -1,4 +1,4 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -12,7 +12,7 @@ import kotlinx.parcelize.Parcelize
  */
 
 @Parcelize
-internal class StickerPack(
+class StickerPack(
     val identifier: String?,
     val name: String?,
     val publisher: String?,

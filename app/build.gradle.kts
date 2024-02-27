@@ -81,6 +81,7 @@ dependencies {
     implementation("com.facebook.fresco:webpsupport:$fresco_version")
     implementation("com.facebook.fresco:animated-webp:$fresco_version")
     implementation("com.facebook.fresco:animated-base:$fresco_version")
+    implementation("io.coil-kt:coil-compose:1.4.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

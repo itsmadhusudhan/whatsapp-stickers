@@ -1,7 +1,9 @@
-package com.devwhispers.whatsapp_stickers
+package com.devwhispers.whatsapp_stickers.features.stickers.data
 
 import android.text.TextUtils
 import android.util.JsonReader
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.Sticker
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.StickerPack
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -13,9 +15,6 @@ import java.io.InputStreamReader
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-
-
 
 internal object ContentFileParser {
     @Throws(IOException::class, IllegalStateException::class)

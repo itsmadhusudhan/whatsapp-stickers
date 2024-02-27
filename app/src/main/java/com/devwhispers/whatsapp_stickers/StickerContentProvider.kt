@@ -12,6 +12,8 @@ import android.database.MatrixCursor
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
+import com.devwhispers.whatsapp_stickers.features.stickers.data.ContentFileParser
+import com.devwhispers.whatsapp_stickers.features.stickers.domain.StickerPack
 import java.io.IOException
 
 /*
@@ -59,7 +61,6 @@ class StickerContentProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor {
-        println("query was called!! with uri: $uri")
         return when (MATCHER.match(uri)) {
             METADATA_CODE -> getPackForAllStickerPacks(uri)
             METADATA_CODE_FOR_SINGLE_PACK -> getCursorForSingleStickerPack(uri)
@@ -161,7 +162,6 @@ class StickerContentProvider : ContentProvider() {
     }
 
     private fun getStickersForAStickerPack(uri: Uri): Cursor {
-        println(uri)
         val identifier = uri.lastPathSegment
         val cursor = MatrixCursor(arrayOf(STICKER_FILE_NAME_IN_QUERY, STICKER_FILE_EMOJI_IN_QUERY))
         getStickerPackList()?.forEach { stickerPack ->
